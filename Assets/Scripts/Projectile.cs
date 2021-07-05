@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private float m_Speed = 10;
     public float Speed { get; set; }
+    private float damage = 1;
 
     [SerializeField] private LayerMask collisionMask;
 
@@ -32,5 +33,11 @@ public class Projectile : MonoBehaviour
     private void OnHitObject(RaycastHit hit)
     {
         Destroy(gameObject);
+        
+        IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();
+        if (damageableObject != null)
+        {
+            damageableObject.TakeHit(damage, hit);
+        }
     }
 }
