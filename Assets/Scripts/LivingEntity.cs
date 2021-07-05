@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float startingHealth;
+    [SerializeField] protected float startingHealth;
     protected float health;
     protected bool isDead;
 
@@ -17,9 +17,13 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     public void TakeHit(float damage, RaycastHit hit)
     {
-        health -= damage;
+        TakeHit(damage);
+    }
 
-        if (health <= 0)
+    public void TakeHit(float damage)
+    {
+        health -= damage;
+        if (health <= 0 && !isDead)
         {
             Die();
         }
