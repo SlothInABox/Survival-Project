@@ -47,7 +47,6 @@ public class SpawnManager : MonoBehaviour
     {
         currentWaveNumber++;
         if (currentWaveNumber - 1 < waves.Length)
-            Debug.Log("Wave: " + currentWaveNumber);
         {
             currentWave = waves[currentWaveNumber - 1];
 
