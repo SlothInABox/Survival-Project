@@ -27,6 +27,8 @@ public class SpawnManager : MonoBehaviour
 
     private bool isDisabled;
 
+    public event System.Action<int> OnNewWave;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,6 +107,11 @@ public class SpawnManager : MonoBehaviour
         isDisabled = true;
     }
 
+    private void ResetPlayerPosition()
+    {
+        playerTransform.position = map.GetTileFromPosition(Vector3.zero).position + Vector3.up * 3;
+    }
+
     private void NextWave()
     {
         currentWaveNumber++;
@@ -114,6 +121,12 @@ public class SpawnManager : MonoBehaviour
 
             enemiesRemainingToSpawn = currentWave.enemyCount;
             enemiesAlive = enemiesRemainingToSpawn;
+
+            if (OnNewWave != null)
+            {
+                OnNewWave(currentWaveNumber);
+            }
+            ResetPlayerPosition();
         }
     }
 

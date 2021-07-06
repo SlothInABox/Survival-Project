@@ -26,8 +26,14 @@ public class MapGenerator : MonoBehaviour
     private Map currentMap;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        FindObjectOfType<SpawnManager>().OnNewWave += OnNewWave;
+    }
+
+    private void OnNewWave(int waveNumber)
+    {
+        mapIndex = waveNumber - 1;
         GenerateMap();
     }
 
