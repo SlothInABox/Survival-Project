@@ -6,15 +6,12 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [SerializeField] private Transform weaponHold;
-    [SerializeField] private Gun startingGun;
+    public Gun[] allGuns;
     private Gun equippedGun;
 
     private void Start()
     {
-        if (startingGun != null)
-        {
-            EquipGun(startingGun);
-        }
+
     }
 
     public void EquipGun(Gun gun)
@@ -25,6 +22,11 @@ public class GunController : MonoBehaviour
         }
         equippedGun = Instantiate(gun, weaponHold.position, weaponHold.rotation) as Gun;
         equippedGun.transform.SetParent(weaponHold);
+    }
+
+    public void EquipGun(int weaponIndex)
+    {
+        EquipGun(allGuns[weaponIndex]);
     }
 
     public void OnTriggerHold()
