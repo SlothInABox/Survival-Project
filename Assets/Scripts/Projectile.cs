@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     private float skinWidth = 0.1f;
 
     [SerializeField] private LayerMask collisionMask;
+    [SerializeField] private Color trailColor;
 
     void Start()
     {
@@ -21,6 +22,8 @@ public class Projectile : MonoBehaviour
         {
             OnHitObject(initialCollisions[0], transform.position);
         }
+
+        GetComponent<TrailRenderer>().startColor = trailColor;
     }
 
     // Update is called once per frame
