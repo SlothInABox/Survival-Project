@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    [SerializeField] protected float startingHealth;
+    public float startingHealth;
     protected float health;
     protected bool isDead;
 
