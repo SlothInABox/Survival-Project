@@ -12,19 +12,35 @@ public class GameUI : MonoBehaviour
     [SerializeField] private RectTransform newWaveBanner;
     [SerializeField] private Text newWaveTitle;
     [SerializeField] private Text newWaveEnemyCount;
+    [SerializeField] private Text scoreUI;
+    [SerializeField] private Text gameOverScoreUI;
+    [SerializeField] private RectTransform healthBar;
 
     private SpawnManager spawnManager;
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<Player>().OnDeath += OnGameOver;
+        player = FindObjectOfType<Player>();
+        player.OnDeath += OnGameOver;
     }
 
     private void Awake()
     {
         spawnManager = FindObjectOfType<SpawnManager>();
         spawnManager.OnNewWave += OnNewWave;
+    }
+
+    private void Update()
+    {
+        scoreUI.text = ScoreKeeper.Score.ToString("D6");
+        float healthPercent = 0;
+        if (player != null)
+        {
+            healthPercent = player.health / player.startingHealth;
+        }
+        healthBar.localScale = new Vector3(healthPercent, 1, 1);
     }
 
     private void OnNewWave(int waveNumber)
@@ -38,15 +54,13 @@ public class GameUI : MonoBehaviour
         StartCoroutine("AnimateNewWaveBanner");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnGameOver()
     {
-        StartCoroutine(Fade(Color.clear, Color.black, 1));
+        Cursor.visible = true;
+        StartCoroutine(Fade(Color.clear, new Color(0,0,0, 0.9f), 1));
+        gameOverScoreUI.text = scoreUI.text;
+        scoreUI.gameObject.SetActive(false);
+        healthBar.transform.parent.gameObject.SetActive(false);
         gameOverUI.SetActive(true);
     }
 
@@ -94,5 +108,10 @@ public class GameUI : MonoBehaviour
     public void StartNewGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
