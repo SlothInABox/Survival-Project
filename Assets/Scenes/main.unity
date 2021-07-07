@@ -11523,6 +11523,7 @@ GameObject:
   - component: {fileID: 2032984186}
   - component: {fileID: 2032984185}
   - component: {fileID: 2032984187}
+  - component: {fileID: 2032984188}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -11571,6 +11572,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainTheme: {fileID: 8300000, guid: 49f068101d85cb04cad36f1e71276fda, type: 3}
   menuTheme: {fileID: 8300000, guid: dc9280eab4541c541a3da67d989cef95, type: 3}
+--- !u!114 &2032984188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032984184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152ab52de9f1de34cadeaf638336d1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundGroups:
+  - groupID: Impact
+    group:
+    - {fileID: 8300000, guid: 335c14cc8caa4224f82ee2a34077ceba, type: 3}
+    - {fileID: 8300000, guid: 6d730427da6b44f4faf3690be2b7ffac, type: 3}
+    - {fileID: 8300000, guid: 72b4567c9f443cd4abea30334167ac51, type: 3}
+  - groupID: Enemy Death
+    group:
+    - {fileID: 8300000, guid: 9b1b31f388d0c6f4a9e1675261817978, type: 3}
+    - {fileID: 8300000, guid: f61329c676f23734f9f183fd4da7c9c7, type: 3}
+  - groupID: Enemy Attack
+    group:
+    - {fileID: 8300000, guid: 429ca9b6ae5f91c48b1f6b80537343a3, type: 3}
+  - groupID: Player Death
+    group:
+    - {fileID: 8300000, guid: 0159bb99f807acb4d8c110b81e16491d, type: 3}
+  - groupID: Level Complete
+    group:
+    - {fileID: 8300000, guid: d399e3e6d514e63478001fea8aa9f34b, type: 3}
 --- !u!1 &2041547486
 GameObject:
   m_ObjectHideFlags: 0
